@@ -1,0 +1,122 @@
+{#  {% extends 'base.html.twig' %}
+
+{% block title %}Foot index{% endblock %}
+
+{% block body %}
+    <h1>Foot index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Idmatchh</th>
+                <th>Typematchh</th>
+                <th>Datematchh</th>
+                <th>Idarb</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for foot in feet %}
+            <tr>
+                <td>{{ foot.idmatchh }}</td>
+                <td>{{ foot.typematchh }}</td>
+                <td>{{ foot.datematchh }}</td>
+                <td>{{ foot.idarb }}</td>
+                <td>
+                    <a href="{{ path('app_foot_show', {'idmatchh': foot.idmatchh}) }}">show</a>
+                    <a href="{{ path('app_foot_edit', {'idmatchh': foot.idmatchh}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_foot_new') }}">Create new</a>
+{% endblock %}
+#}
+
+
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div style="display: flex;align-items:center;justify-content: center;">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card my-4">
+                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                        <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                            <h1 class="text-white text-capitalize ps-3">Table Foot</h1>
+                        </div>
+                    </div>
+                    <div class="card-body px-0 pb-2">
+                        <div class="table-responsive p-0">
+                            <table class="table align-items-center mb-0">
+                                <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Idmatchh</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Typematchh </th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Datematchh</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Idarb</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Show</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Edit</th>
+
+                                    <th class="text-secondary opacity-7"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for foot in feet %}                                    <td>
+                                        <div class="d-flex px-2 py-1">
+
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="mb-0 text-sm"> {{foot.idmatchh}}</h6>
+
+
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0">{{foot.typematchh}}</p>
+                                        <p class="text-xs text-secondary mb-0"></p>
+                                    </td>
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0">{{foot.datematchh}}</p>
+                                        <p class="text-xs text-secondary mb-0"></p>
+                                    </td>
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0">{{foot.idarb}}</p>
+                                        <p class="text-xs text-secondary mb-0"></p>
+                                    </td>
+                                    <td class="align-middle text-center text-sm">
+                                        <span class="badge badge-sm bg-gradient-success"> <a href="{{ path('app_foot_show', {'idmatchh': foot.idmatchh}) }}">show</a></span>
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        <span class="badge badge-sm bg-gradient-success"> <a href="{{ path('app_foot_edit', {'idmatchh': foot.idmatchh}) }}">edit</a></span>
+                                    </td>
+
+                                </tr>
+
+                                {% endfor %}
+                                </tbody>
+
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <a href="{{ path('app_foot_new') }}">Create new</a>
+    </div>
+{% endblock %}
+
+
+
+

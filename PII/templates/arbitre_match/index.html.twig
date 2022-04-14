@@ -1,0 +1,146 @@
+
+{#
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #customers {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+        #customers tr:hover {background-color: #ddd;}
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;
+        }
+    </style>
+</head>
+{% block body %}
+
+<h1>Table Arbitre</h1>
+
+<table id="customers">
+    <tr>
+        <th>Idarb</th>
+        <th>Nomarb</th>
+        <th>Specialite</th>
+        <th>Email</th>
+        <th>actions</th>
+    </tr>
+
+        {% for arbitre_match in arbitre_matches %}
+    <tr>
+        <td>{{ arbitre_match.idarb }}</td>
+        <td>{{ arbitre_match.nomarb }}</td>
+        <td>{{ arbitre_match.specialite }}</td>
+        <td>{{ arbitre_match.email }}</td>
+        <td>
+            <a href="{{ path('app_arbitre_match_show', {'idarb': arbitre_match.idarb}) }}">show</a>
+            <a href="{{ path('app_arbitre_match_edit', {'idarb': arbitre_match.idarb}) }}">edit</a>
+        </td>
+    </tr>
+
+        {% endfor %}
+
+
+</table>
+<a href="{{ path('app_arbitre_match_new') }}">Create new</a>
+
+{% endblock %}
+</html>
+
+#}
+
+
+
+
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div style="display: flex;align-items:center;justify-content: center;">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card my-4">
+                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                        <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                            <h1 class="text-white text-capitalize ps-3">Table Arbitre</h1>
+                        </div>
+                    </div>
+                    <div class="card-body px-0 pb-2">
+                        <div class="table-responsive p-0">
+                            <table class="table align-items-center mb-0">
+                                <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Idarb</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nomarb </th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Specialite</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Show</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Edit</th>
+
+                                    <th class="text-secondary opacity-7"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for arbitre_match in arbitre_matches %}                                <tr>
+                                    <td>
+                                        <div class="d-flex px-2 py-1">
+
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="mb-0 text-sm"> {{arbitre_match.idarb}}</h6>
+
+
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0">{{arbitre_match.nomarb}}</p>
+                                        <p class="text-xs text-secondary mb-0"></p>
+                                    </td>
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0">{{arbitre_match.specialite}}</p>
+                                        <p class="text-xs text-secondary mb-0"></p>
+                                    </td>
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0">{{arbitre_match.email}}</p>
+                                        <p class="text-xs text-secondary mb-0"></p>
+                                    </td>
+                                    <td class="align-middle text-center text-sm">
+                                        <span class="badge badge-sm bg-gradient-success"> <a href="{{ path('app_arbitre_match_show', {'idarb': arbitre_match.idarb}) }}">Show</a></span>
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        <span class="badge badge-sm bg-gradient-success"> <a href="{{ path('app_arbitre_match_edit', {'idarb': arbitre_match.idarb}) }}">Edit</a></span>
+                                    </td>
+
+                                </tr>
+
+                                {% endfor %}
+                                </tbody>
+
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <a href="{{ path('app_arbitre_match_new') }}">Create new</a>
+    </div>
+{% endblock %}
